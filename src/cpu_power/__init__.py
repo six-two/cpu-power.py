@@ -2,6 +2,7 @@
 import argparse
 import sys
 import os
+import time
 import traceback
 from typing import Optional
 import re
@@ -242,6 +243,10 @@ def subcommand_set(args) -> int:
         max_freq = int(args.max_freq * 1000)
         error_handler.try_fn(lambda: CpuManager.set_max_freq(max_freq), "Failed setting maximum frequency")
 
+    if args.min_freq or args.max_freq:
+        # Wait a bit to give the settings time to update
+        time.sleep(0.1)
+
     # Show the new values, so that I can see if the opperation succeeded
     if subcommand_info(args) != 0:
         error_handler.has_error = True
@@ -277,7 +282,7 @@ def parse_args():
     return ap.parse_args()
 
 
-if __name__ == "__main__":
+def main() -> int:
     args = parse_args()
 
     if args.verbose:
@@ -290,4 +295,8 @@ if __name__ == "__main__":
     else:
         code = subcommand_info(args)
 
-    sys.exit(code)
+    return code
+
+
+if __name__ == "__main__":
+    sys.exit(main())
