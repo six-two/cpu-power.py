@@ -1,4 +1,7 @@
 # cpu-power.py
+[![PyPI version](https://img.shields.io/pypi/v/cpu-power.py)](https://pypi.org/project/cpu-power.py/)
+![License](https://img.shields.io/pypi/l/cpu-power.py)
+![Python versions](https://img.shields.io/pypi/pyversions/cpu-power.py)
 
 View and edit some CPU power saving settings:
 
